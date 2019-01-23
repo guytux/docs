@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Troubleshoot Bluetooth Issues
+title: Bluetooth - Troubleshoot Bluetooth Issues
 description: >
   Here is how to fix several common Bluetooth issues with your computer.
 keywords:
@@ -21,9 +21,15 @@ Then, try reinstalling Bluetooth related software with this command:
 sudo apt install --reinstall bluez gnome-bluetooth indicator-bluetooth pulseaudio-module-bluetooth
 ```
 
+If `tlp` is installed, then there may be settings interfering with Bluetooth functionality.  Edit this file and disable Wifi and Bluetooth power saving features:
+
+```
+sudo gedit /etc/default/tlp
+```
+
 ## Useful Programs
 
-There is a program called 'Bluetooth Manager' which is included with XFCE. It can sometimes pair and trust Bluetooth devices better than the default <u>Bluetooth</u> settings. Install it with:
+There is a program called <u>Bluetooth Manager</u> which is included with <u>XFCE</u>. It can sometimes pair and trust Bluetooth devices better than the default <u>Bluetooth</u> settings. Install it with:
 
 ```
 sudo apt install blueman
@@ -34,7 +40,7 @@ Then, run <u>Bluetooth Manager</u>. Check for the device being trusted, and also
 ## Useful Commands
 
 ```
-lsmod | grep Bluetooth
+lsmod | grep bluetooth
 dmesg | grep Bluetooth
 ```
 
@@ -71,14 +77,14 @@ Here are a few addition tidbits about the Bluetooth system that may help with tr
 
 #### Linux Firmware
 
-Occasionally the kernel and/or Linux firmware will have problems.  Sometimes, newer Linux firmware packages will have fixed bugs that aren't yet in the Ubuntu repositories.  They can be downloaded from here:
+Occasionally the kernel and/or Linux firmware will have problems.  Sometimes, newer Linux firmware packages will have fixed bugs that aren't yet in the repositories.  They can be downloaded from here:
 
 [http://mirrors.kernel.org/ubuntu/pool/main/l/linux-firmware/](http://mirrors.kernel.org/ubuntu/pool/main/l/linux-firmware/)
 
 Then they can be installed with this command:
 
 ```
-sudo dpkg -i linux-firmware_1.164.1_all.deb
+sudo dpkg -i linux-firmware_1.167.1_all.deb
 ```
 
 #### File Transfer

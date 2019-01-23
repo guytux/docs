@@ -1,42 +1,101 @@
 ---
 layout: article
-title: Setup CUDA On Ubuntu
+title: Software - Install CUDA and cuDNN
 description: >
-  Complete instructions on setting up the NVIDIA CUDA toolkit, including compiling CUDA samples.
+  Complete instructions on setting up the NVIDIA CUDA toolkit and cuDNN libraries
 keywords:
   - NVIDIA
   - CUDA
-  - Ubuntu
 image: http://support.system76.com/images/system76.png
 hidden: false
-section: articles
+section: machine-learning
 
 ---
 
-### Install The NVIDIA CUDA Toolkit
+## Install on Pop!_OS
 
-[Click here to download the NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)
+### Install The latest NVIDIA CUDA Toolkit
 
-When you select your target platform, choose the 'deb (network)' installer for either 14.04 or 16.04. Please note that other versions of Ubuntu are not supported at this time.
-
-![Select Target Platform](/images/cuda/1_download-1604.png)
-
-Click the Download button and open the downloaded .deb file with Ubuntu <u>Software
-Center</u>:
-
-![Download with](/images/cuda/2_open_with-1604.png)
-
-Click the **Install** button in the Ubuntu Software Center to install
-<u>cuda-repo-ubuntu1604</u>:
-
-![Click Install](/images/cuda/3_install-1604.png)
-
-Then open a terminal and run these commands:
+To install the CUDA toolkit, please run this command:
 
 ```
+sudo apt install system76-cuda-latest
+```
+
+To install the cuDNN library, please run this command:
+
+```
+sudo apt install system76-cudnn-10.0
+```
+
+### For older releases of The NVIDIA CUDA Toolkit
+
+To install CUDA 9.2:
+
+```
+sudo apt install system76-cuda-9.2
+```
+
+For the respective cuDNN library:
+
+```
+sudo apt install system76-cudnn-9.2
+```
+
+To install CUDA 9.1:
+
+```
+sudo apt install system76-cuda-9.1
+```
+
+For the respective cuDNN library:
+
+```
+sudo apt install system76-cudnn-9.1
+```
+
+To install CUDA 9.0:
+
+```
+sudo apt install system76-cuda-9.0
+```
+
+For the respective cuDNN library:
+
+```
+sudo apt install system76-cudnn-9.0
+```
+
+### Switch between different versions:
+
+You can switch between each CUDA version with the following command:
+
+```
+sudo update-alternatives --config cuda
+```
+
+To verify installation, run this command to see the current version of the NVIDIA CUDA compiler:
+
+```
+nvcc -V
+```
+
+You can also check the version of the installer and patches installed with this command:
+
+```
+cat /usr/lib/cuda/version.txt
+```
+
+## Not running Pop!_OS?
+
+The previous instructions will work with Pop!_OS out of the box but for Ubuntu and other Debian derivatives the following commands will need to be ran first:
+
+```
+sudo echo "deb [arch=amd64] http://apt.pop-os.org/proprietary bionic main" | sudo tee -a /etc/apt/sources.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 204DD8AEC33A7AFF
 sudo apt update
-sudo apt upgrade
-sudo apt install cuda
 ```
 
-Now reboot your system so that the new NVIDIA driver takes effect.
+*These packages have been tested with the System76 NVIDIA driver only.
+
+The following [article](https://support.system76.com/articles/system76-driver/) will go over installing the System76 NVIDIA driver.
